@@ -28,7 +28,6 @@ public class Navigator {
             options[2] = getOptions(flooded, currentX, currentY + 1);
             options[3] = getOptions(flooded, currentX - 1, currentY);
             int directionToMove = lowestIndex(options);
-            System.out.println(Arrays.toString(options));
             switch (directionToMove) {
                 case 0:
                     currentY = currentY - 1;
@@ -46,10 +45,6 @@ public class Navigator {
                     throw new Exception("Unknown switch case");
             }
             flooded[currentY][currentX] = 1999;
-            System.out.print(currentX);
-            System.out.print(",");
-            System.out.print(currentY);
-            System.out.print("\n");
         }
         m.setImage(flooded);
         return m;

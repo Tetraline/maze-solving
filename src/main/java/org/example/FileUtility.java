@@ -2,7 +2,6 @@ package org.example;
 
 import com.google.gson.Gson;
 
-import javax.imageio.IIOException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;

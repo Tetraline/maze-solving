@@ -3,36 +3,36 @@ package org.example;
 public class Flood {
 
 
-    public static int[][] assignDistance(int x, int y, int[][] maze) {
-        int distance = maze[x][y];
+    public static int[][] assignDistance(int y, int x, int[][] maze) {
+        int distance = maze[y][x];
         try {
-            if (maze[x][y + 1] == 0) {
-                maze[x][y + 1] = distance + 1;
-                maze = assignDistance(x, y + 1, maze);
+            if (maze[y][x + 1] == 0) {
+                maze[y][x + 1] = distance + 1;
+                maze = assignDistance(y, x + 1, maze);
             }
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         try {
-            if (maze[x + 1][y] == 0) {
-                maze[x + 1][y] = distance + 1;
-                maze = assignDistance(x + 1, y, maze);
+            if (maze[y + 1][x] == 0) {
+                maze[y + 1][x] = distance + 1;
+                maze = assignDistance(y + 1, x, maze);
             }
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         try {
-            if (maze[x - 1][y] == 0) {
-                maze[x - 1][y] = distance + 1;
-                maze = assignDistance(x - 1, y, maze);
+            if (maze[y - 1][x] == 0) {
+                maze[y - 1][x] = distance + 1;
+                maze = assignDistance(y - 1, x, maze);
             }
-        } catch (Exception e) {
+        } catch (Exception ignored) {
 
         }
         try {
-            if (maze[x][y - 1] == 0) {
-                maze[x][y - 1] = distance + 1;
-                maze = assignDistance(x, y - 1, maze);
+            if (maze[y][x - 1] == 0) {
+                maze[y][x - 1] = distance + 1;
+                maze = assignDistance(y, x - 1, maze);
             }
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         return maze;
     }
@@ -41,7 +41,6 @@ public class Flood {
     public static Maze flood(Maze m) {
         int[][] flooded = m.getImage();
         int MAZE_WIDTH = flooded.length;
-        int MAZE_HEIGHT = flooded[0].length;
 
         int startX = 0;
         for (int x = 0; x < MAZE_WIDTH; x++) {
