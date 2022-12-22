@@ -41,8 +41,13 @@ public class MazeVisualizer {
                         g.setColor(BACKGROUND_COLOR);
                     }
                     if (maze.getImage()[y][x] > 2) {
-                        g.setColor(Color.BLACK);
-                        g.drawString(Integer.toString(maze.getImage()[y][x]), x * CELL_SIZE + CELL_SIZE / 2 - 10, y * CELL_SIZE + CELL_SIZE / 2);
+                        if(maze.getImage()[y][x]==1999){
+                            g.setColor(Color.YELLOW);
+                            g.fillRect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+                        }else {
+                            g.setColor(Color.BLACK);
+                            g.drawString(Integer.toString(maze.getImage()[y][x]), x * CELL_SIZE + CELL_SIZE / 2 - 10, y * CELL_SIZE + CELL_SIZE / 2);
+                        }
                     }else {
                         g.fillRect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
                     }
