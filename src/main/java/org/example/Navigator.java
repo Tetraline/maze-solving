@@ -44,7 +44,7 @@ public class Navigator {
                 default:
                     throw new Exception("Unknown switch case");
             }
-            flooded[currentY][currentX] = 1999;
+            flooded[currentY][currentX] += 2000;
         }
         m.setImage(flooded);
         return m;
