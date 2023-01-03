@@ -3,16 +3,8 @@ package org.example;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Arrays;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import com.google.gson.Gson;
 
 public class MazeVisualizer {
     private static final int CELL_SIZE = 20;
@@ -45,10 +37,10 @@ public class MazeVisualizer {
                         if(maze.getImage()[y][x]>2000){
                             g.setColor(Color.YELLOW);
                             g.fillRect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
-                            g.setColor(Color.BLACK);
+                            g.setColor(Color.GRAY);
                             g.drawString(Integer.toString(maze.getImage()[y][x]-2000), x * CELL_SIZE + CELL_SIZE / 2 - 10, y * CELL_SIZE + CELL_SIZE / 2);
                         }else {
-                            g.setColor(Color.BLACK);
+                            g.setColor(Color.GRAY);
                             g.drawString(Integer.toString(maze.getImage()[y][x]), x * CELL_SIZE + CELL_SIZE / 2 - 10, y * CELL_SIZE + CELL_SIZE / 2);
                         }
                     }else {

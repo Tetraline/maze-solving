@@ -3,15 +3,9 @@ package org.example;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Arrays;
-import java.util.Scanner;
 
 import javax.swing.*;
-
-import com.google.gson.Gson;
 
 public class MazeEditor extends JPanel {
     private static final long serialVersionUID = 1L;
@@ -19,7 +13,7 @@ public class MazeEditor extends JPanel {
     private static final int CELL_SIZE = 40;
     private static final int PADDING = 10;
 
-    private int[][] maze;
+    private final int[][] maze;
 
     public MazeEditor(int[][] maze) {
         this.maze = maze;
@@ -58,16 +52,16 @@ public class MazeEditor extends JPanel {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         frame.getContentPane().add(new MazeEditor(maze));
-
+        JLabel instructionsLabel = new JLabel("Click on cells to toggle between 0 and 1");
+        frame.getContentPane().add(instructionsLabel, BorderLayout.NORTH);
         JButton saveButton = new JButton("Solve");
         saveButton.addActionListener(e -> {
-            int[][] mazeArray = Arrays.stream(maze).map(el -> el.clone()).toArray($->maze.clone());
+            int[][] mazeArray = Arrays.stream(maze).map(int[]::clone).toArray($->maze.clone());
             Maze m = new Maze(mazeArray);
             Maze flooded = Flood.flood(m);
             try {
                 Maze route = Navigator.calculateRoute(flooded);
-                MazeVisualizer v = new MazeVisualizer();
-                v.showMaze(route);
+                MazeVisualizer.showMaze(route);
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
@@ -81,8 +75,7 @@ public class MazeEditor extends JPanel {
         frame.setVisible(true);
     }
 
-    public static void main(String[] args) {
-        int[][] maze = new int[][]{{1, 1, 0, 1, 1, 1, 1, 1, 1, 1}, {1, 0, 0, 0, 0, 0, 0, 0, 0, 1}, {1, 0, 1, 1, 1, 1, 1, 1, 0, 1}, {1, 0, 1, 0, 0, 0, 0, 1, 0, 1}, {1, 0, 1, 0, 1, 1, 0, 1, 0, 1}, {1, 0, 0, 0, 1, 1, 0, 1, 0, 1}, {1, 1, 1, 0, 0, 1, 0, 1, 1, 1}, {1, 0, 1, 1, 1, 1, 0, 1, 0, 1}, {1, 0, 0, 0, 0, 0, 0, 0, 0, 1}, {1, 1, 0, 1, 1, 1, 1, 1, 1, 1}};
+    public static void run(int[][] maze) {
         SwingUtilities.invokeLater(() -> createAndShowGui(maze));
     }
 }
