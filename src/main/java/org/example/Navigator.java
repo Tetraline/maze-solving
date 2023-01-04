@@ -1,5 +1,7 @@
 package org.example;
 
+import static org.example.util.isWithinBounds;
+
 public class Navigator {
 
     public static Maze calculateRoute(Maze m) throws Exception {
@@ -61,7 +63,7 @@ public class Navigator {
     }
 
     private static int getOptions(int[][] array, int x, int y) {
-        if (util.isWithinBounds(array, y, x)) {
+        if (isWithinBounds(array, y, x)) {
             int value = array[y][x];
             if (value != 1) {
                 return value;
