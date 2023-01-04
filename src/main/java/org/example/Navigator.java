@@ -1,7 +1,5 @@
 package org.example;
 
-import java.util.Arrays;
-
 public class Navigator {
 
     public static Maze calculateRoute(Maze m) throws Exception {
@@ -63,7 +61,7 @@ public class Navigator {
     }
 
     private static int getOptions(int[][] array, int x, int y) {
-        try {
+        if (util.isWithinBounds(array, y, x)) {
             int value = array[y][x];
             if (value != 1) {
                 return value;
@@ -71,7 +69,7 @@ public class Navigator {
                 // Wall Case
                 return 444;
             }
-        } catch (Exception e) {
+        }else{
             // Array out of bounds
             return 555;
         }
